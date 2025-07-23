@@ -1,0 +1,22 @@
+import numpy as np
+
+A = np.array([5, 6, 8, 3, 74, 25])
+
+print("Array : \n", A)
+
+min_value=np.min(A)
+max_value=np.max(A)
+mean = np.mean(A)
+standard_deviation = np.std(A)
+range = max_value - min_value
+midrange = (range) / 2
+variance = np.var(A)
+
+
+print("Mean : ", mean)
+print("Standard Deviation : ", standard_deviation)
+print("Minimum Value : ", min_value)
+print("Maximum Value : ", max_value)
+print("Range : ", range)
+print("Midrange : ", midrange)
+print("Variance : ", variance)
