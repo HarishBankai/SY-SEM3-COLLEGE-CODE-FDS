@@ -1,0 +1,35 @@
+import pandas as pd   
+import numpy as np             
+import matplotlib.pyplot as plt        
+import seaborn as sns
+
+data = {
+    'DM' : [86, 90, 75, 78, 82, 95] ,
+    'DSA' : [77, 80, 85, 68, 89, 95] ,
+    'FDS' : [96, 70, 65, 88, 72, 78] , 
+    'ADEC' : [76, 80, 75, 68, 82, 87] ,
+    'CEP' : [66, 80, 75, 84, 92, 95] , 
+    'M2' : [50, 70, 85, 64, 52, 77] 
+}
+
+df = pd.DataFrame(data)
+
+variance = df.var() 
+mean = df.mean()   
+median = df.median()   
+
+print("\nMean : \n", mean)
+print("\nVariance : \n", variance) 
+print("\nMedian : \n", median) 
+
+plt.figure(figsize=(10, 10))
+sns.heatmap(df.corr(), annot=True, cmap='coolwarm', linewidth=0.5)
+plt.title("Correlation Matrix :")
+plt.show()
+
+plt.figure(figsize=(10, 10))
+sns.histplot(df['DM'], kde=True, color='red', bins=10)
+plt.title("Normal Distributio - DM Scores")
+plt.xlabel("Score")
+plt.xlabel("Frequency")
+plt.show()
