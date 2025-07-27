@@ -1,7 +1,0 @@
-import pandas as pd                                                                    #import pandas library in the notebook
-df = pd.read_csv("file_location_from_colab")                                            #read csv file by using pd.read_csv("------------------")
-df.shape                                                                                #tells the number of (rows , columns)
-df.head()                                                                             #tells the information about first 5 rows
-df.tail()                                                                             #tells the information about last 5 rows
-df.describe()                                                                          #tells count,meanstd,mdeian,min,max, percentage
-df.info()                                                                               

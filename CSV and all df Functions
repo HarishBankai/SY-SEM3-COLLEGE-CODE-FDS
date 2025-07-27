@@ -1,0 +1,31 @@
+import pandas as pd                                                                          #import pandas library in the notebook
+
+df = pd.read_csv("file_location_from_colab")                                                 #read csv file by using pd.read_csv("------------------")
+
+df.shape                                                                                     #tells the number of (rows , columns)
+
+df.head()                                                                                    #tells the information about first 5 rows
+
+df.tail()                                                                                    #tells the information about last 5 rows
+
+df.describe()                                                                                #tells count,meanstd,mdeian,min,max, percentage           
+
+df.columns                                                                                   #Return a list of column labels (column headers) for the DataFrame.
+
+df.index                                                                                     #Returns an Index object that contains the indices (row labels).
+
+df.dtypes                                                                                    #Get the data type of each column.
+
+df.sort_values(by='column_name')                                                             #Sort a DataFrame by values in one or more columns.
+
+df.drop(['column_name'], axis=1)                                                             #Remove specified labels from rows or columns (axis).
+
+df.rename(columns={'old_name': 'new_name'}                                                   #Rename columns in the DataFrame.
+
+df.isnull()                                                                                  #Check for missing values in a DataFrame. Returns a DataFrame of boolean type, where True represents missing (NaN) values and False represents not-missing values.
+
+df.fillna(value='replace_with')                                                              #Fill NA/NaN values using the specified method.
+
+df['column_name'] = new_values                                                               #Set new column as an existing one (slicing).
+
+df[df['column_name'] > value]                                                                #Filter rows based on a condition
