@@ -1,0 +1,88 @@
+import pandas as pd
+import numpy as np
+
+data = {
+    'DM' : [ 86, 77, 75, 78, 82, 95] ,
+    'DSA' : [np.nan, 80, np.nan, 68, np.nan, 95] ,
+    'FDS' : [96, 70, 65, 88, 72, 78] ,
+    'ADEC' : [76, np.nan, 75, np.nan, 82, 87] ,
+    'CEP' : [66, 80, 75, np.nan, 92, 95] ,
+    'M2' : [50, np.nan, 85, np.nan, 52, 77]
+}
+
+#create the dataframe
+df = pd.DataFrame(data)
+
+#print the dataframe
+print("Original dataset : ")
+print(df)
+
+#select the row you want to duplicate and replace it in first location
+df.loc[0] = df.loc[5] 
+print("After duplicating rows: ")
+print(df)
+
+#calculate all the missing values in each columns
+print("\n Missing values in each column : ")
+print(df.isnull().sum())
+
+#row we select for duplicate
+print("\n Duplicate Rows: ")
+print(df[df.duplicated()])
+
+#remove the duplicate row we selected 
+df_no_duplicates = df.drop_duplicates()
+print("\n Dataset after removing Duplicates: ")
+print(df_no_duplicates)
+
+#dropping rows with missing values
+df_dropna_rows = df_no_duplicates.dropna()
+print("\n Dataset after dropping rows with Missing values : ")
+print(df_dropna_rows)
+
+#dropping columns with missing values
+df_dropna_columns = df_no_duplicates.dropna(axis=1)
+print("\n Dataset after dropping columns with Missing values : ")
+print(df_dropna_columns)
+
+#mean in dataframe of each column
+mean = df.mean()
+print("\n Mean of each column : ")
+print(mean)
+
+#Minimum value in dataframe of each column
+min_value = df.min()
+print("\n Minimum of each column : ")
+print(min_value)
+
+#Maximum value in dataframe of each column
+max_value = df.max()
+print("\n Maximum of each column : ")
+print(max_value)
+
+#fill the mean in the missing values
+df_mean_filled = df_no_duplicates.copy()
+df_mean_filled['DSA'] = df_mean_filled['DSA'].fillna(df_mean_filled['DSA'].mean())
+df_mean_filled['ADEC'] = df_mean_filled['ADEC'].fillna(df_mean_filled['ADEC'].mean())
+df_mean_filled['CEP'] = df_mean_filled['CEP'].fillna(df_mean_filled['CEP'].mean())
+df_mean_filled['M2'] = df_mean_filled['M2'].fillna(df_mean_filled['M2'].mean())
+print("\n Missing values filed for mean (and mode for categorical) : ")
+print(df_mean_filled)
+
+#fill the maximum in the missing values
+df_max_filled = df_no_duplicates.copy()
+df_max_filled['DSA'] = df_max_filled['DSA'].fillna(df_max_filled['DSA'].max())
+df_max_filled['ADEC'] = df_max_filled['ADEC'].fillna(df_max_filled['ADEC'].max())
+df_max_filled['CEP'] = df_max_filled['CEP'].fillna(df_max_filled['CEP'].max())
+df_max_filled['M2'] = df_max_filled['M2'].fillna(df_max_filled['M2'].max())
+print("\n Missing values filed for max : ")
+print(df_max_filled)
+
+#fill the minimum in the missing values
+df_min_filled = df_no_duplicates.copy()
+df_min_filled['DSA'] = df_min_filled['DSA'].fillna(df_min_filled['DSA'].min())                                
+df_min_filled['ADEC'] = df_min_filled['ADEC'].fillna(df_min_filled['ADEC'].min())
+df_min_filled['CEP'] = df_min_filled['CEP'].fillna(df_min_filled['CEP'].min())
+df_min_filled['M2'] = df_min_filled['M2'].fillna(df_min_filled['M2'].min())
+print("\n Missing values filed for min : ")
+print(df_min_filled)
