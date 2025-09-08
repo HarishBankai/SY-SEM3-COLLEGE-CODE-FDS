@@ -1,0 +1,38 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.stats import mode
+
+df = pd.read_csv("/content/city_temperature.csv")
+small_df=df.sample(n=10, random_state=42)
+print(df)
+
+print(small_df)
+
+mean_temp = small_df.groupby("City")['AvgTemperature'].mean()
+median_temp = small_df.groupby("City")['AvgTemperature'].median()
+mode_temp = small_df.groupby("City")['AvgTemperature'].apply(lambda x: mode(x))
+
+print("Mean Temperature:\n", mean_temp, "\n")
+print("Median Temperature:\n", median_temp, "\n")
+print("Mode Temperature:\n", mode_temp, "\n")
+
+small_df.boxplot(by="City", column="AvgTemperature", grid=False)
+plt.title("Temperature Distribution by City")
+plt.suptitle("")  # remove default pandas title
+plt.xlabel("City")
+plt.ylabel("AvgTemperature (°C)")
+plt.show()
+
+# Histogram for each city
+for city in small_df['City'].unique():
+    subset = small_df[small_df['City'] == city]
+    plt.hist(subset['AvgTemperature'], bins=15, alpha=0.7, label=city)
+
+plt.title("Average Temperature Histogram by City", fontsize=16)
+plt.xlabel("Average Temperature (°C)", fontsize=12)
+plt.ylabel("Frequency", fontsize=12)
+plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')  # Move legend outside
+plt.grid(alpha=0.3)  # Add subtle grid
+plt.tight_layout()  # Adjust layout
+plt.show()
